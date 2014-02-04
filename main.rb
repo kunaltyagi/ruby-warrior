@@ -15,22 +15,20 @@ class Player
  
   def actions(warrior) 
   #potential actions the warrior can take to respond to situations
-    if @under_attack == true 
-      if warrior.feel.enemy? == true
-        warrior.attack!
-      else
+    if warrior.feel.enemy? == true
+      warrior.attack!
+    elsif warrior.feel.captive? ==true
+      warrior.rescue!
+    elsif warrior.feel.empty? == true
+      if @under_attack == true
         warrior.walk!
-      end
-    elsif warrior.health >= @max_health
-      if warrior.feel.enemy?
-        warrior.attack!
-      else
+      elsif warrior.health >= @max_health
         warrior.walk!
+      else
+        warrior.rest!
       end
-    else
-      warrior.rest!
     end
-  end
+ end
  
   def record_health(warrior)
     @health = warrior.health
