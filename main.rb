@@ -16,7 +16,9 @@ class Player
  
   def actions(warrior) 
   #potential actions the warrior can take to respond to situations
-    if @wall != 1
+    if warrior.feel.wall? == true
+      warrior.pivot!
+    elsif @wall != 1
       if warrior.feel(:backward).empty? == true
         warrior.walk!(:backward)
       elsif warrior.feel(:backward).enemy? == true
