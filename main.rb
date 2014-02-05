@@ -23,6 +23,8 @@ class Player
         warrior.attack!(:backward)
       elsif warrior.feel(:backward).captive? == true
         warrior.rescue!(:backward)
+      elsif warrior.feel!(:backward).wall? == true
+        @wall = 1
       end
     elsif warrior.feel.enemy? == true
       warrior.attack!
