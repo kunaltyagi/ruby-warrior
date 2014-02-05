@@ -31,10 +31,12 @@ class Player
     elsif warrior.feel.captive? ==true
       warrior.rescue!
     elsif warrior.feel.empty? == true
-      if warrior.health < @min_health
-        warrior.walk!(:backward)
-      elsif @under_attack == true
-        warrior.walk!
+      if @under_attack == true
+        if warrior.health < @min_health
+          warrior.walk!(:backward)
+        else
+          warrior.walk!
+        end
       elsif warrior.health >= @max_health
         warrior.walk!
       else
